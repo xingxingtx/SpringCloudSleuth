@@ -21,7 +21,8 @@
     并上传给zipkin-service；
     user-service为一个应用服务，对外暴露API接口，同时它也作为链路追踪客户端，负责产生数据。
 #### `步骤`
-   ##### zipkin-server模块
+   ##### zipkin-server模块 
+    依赖：
    ```` java
    <dependencies>
    		<!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-eureka -->
@@ -42,5 +43,15 @@
    			<artifactId>zipkin-autoconfigure-ui</artifactId>
    			<version>2.11.0</version>
    		</dependency>
-   	</dependencies>
+   </dependencies>
+   在程序的启动类ZipkinServiceApplication加上@EnableZipkinServer开启ZipkinServer的功能，
+   加上@EnableEurekaClient注解，启动Eureka Client。代码如下：
+   @SpringBootApplication
+   @EnableEurekaClient
+   @EnableZipkinServer
+   public class ZipkinServerApplication {
+       public static void main(String[] args) {
+           SpringApplication.run(ZipkinServerApplication.class, args);
+       }
+   }
    	
