@@ -1,0 +1,14 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8820/eureka/
+server:
+  port: 8830
+spring:
+  application:
+    name: user-service
+  zipkin:
+    base-url: http://localhost:8810
+  sleuth:
+    sampler:
+      percentage: 1.0 #100%的概率将链路的数据上传给Zipkin Server，在默认的情况下，该值为0.1

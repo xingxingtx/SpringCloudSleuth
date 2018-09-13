@@ -10,12 +10,12 @@
 #### `所用技术`
      java 1.8
      springboot 2.0.3
-     springcloud Dalston.RELEASE
+     springcloud Finchley.SR1
      mysql
      Twitter Zipkin
 #### `项目简介`
-    案例一共四个工程采用多Module形式，包含了eureka-server工程，作为服务注册中心，
-    eureka-server的创建过程这里不重复；
+    案例由多个工程采用多Module形式，
+    包含了eureka-server工程，作为服务注册中心，
     zipkin-server作为链路追踪服务中心，负责存储链路数据；
     gateway-service作为服务网关工程，负责请求的转发,同时它也作为链路追踪客户端，负责产生数据，
     并上传给zipkin-service；
@@ -23,7 +23,7 @@
 #### `步骤`
    ##### zipkin-server模块 
     依赖：
-   ```` java
+```` java
    <dependencies>
    		<!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-eureka -->
    		<dependency>
@@ -54,4 +54,15 @@
            SpringApplication.run(ZipkinServerApplication.class, args);
        }
    }
-   	
+  application.yml
+  eureka:
+    client:
+      serviceUrl:
+        defaultZone: http://localhost:8761/eureka/
+  server:
+    port: 9411
+  spring:
+    application:
+      name: zipkin-server
+  ````
+  #### user-service模块
