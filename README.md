@@ -12,7 +12,7 @@
      springboot 2.0.3
      springcloud Dalston.RELEASE
      mysql
-    Twitter Zipkin
+     Twitter Zipkin
 #### `项目简介`
     案例一共四个工程采用多Module形式，包含了eureka-server工程，作为服务注册中心，
     eureka-server的创建过程这里不重复；
@@ -20,3 +20,27 @@
     gateway-service作为服务网关工程，负责请求的转发,同时它也作为链路追踪客户端，负责产生数据，
     并上传给zipkin-service；
     user-service为一个应用服务，对外暴露API接口，同时它也作为链路追踪客户端，负责产生数据。
+#### `步骤`
+   ##### zipkin-server模块
+   ```` java
+   <dependencies>
+   		<!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-eureka -->
+   		<dependency>
+   			<groupId>org.springframework.cloud</groupId>
+   			<artifactId>spring-cloud-starter-eureka</artifactId>
+   			<version>1.3.0.RELEASE</version>
+   		</dependency>  
+   		<!-- https://mvnrepository.com/artifact/io.zipkin.java/zipkin-server -->
+   		<dependency>
+   			<groupId>io.zipkin.java</groupId>
+   			<artifactId>zipkin-server</artifactId>
+   			<version>2.11.0</version>
+   		</dependency>   
+   		<!-- https://mvnrepository.com/artifact/io.zipkin.java/zipkin-autoconfigure-ui -->
+   		<dependency>
+   			<groupId>io.zipkin.java</groupId>
+   			<artifactId>zipkin-autoconfigure-ui</artifactId>
+   			<version>2.11.0</version>
+   		</dependency>
+   	</dependencies>
+   	
